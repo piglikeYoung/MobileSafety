@@ -28,7 +28,7 @@ public class SettingItemView extends RelativeLayout {
 	 * 
 	 * @param context
 	 */
-	private void iniView(Context context) {
+	private void iniView(Context context) { 
 		// 把一个布局文件--->View 并且加载在SettingItemView
 		View.inflate(context, R.layout.setting_item_view, this);
 		cb_status = (CheckBox) this.findViewById(R.id.cb_status);
