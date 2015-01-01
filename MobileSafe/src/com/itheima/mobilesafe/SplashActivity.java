@@ -37,6 +37,13 @@ import android.widget.Toast;
 
 import com.itheima.mobilesafe.utils.StreamTools;
 
+/**
+ * APP启动界面
+ * 
+ * @ClassName: SplashActivity
+ * @author JinHeng
+ * @date 2015年1月1日 下午10:30:14
+ */
 public class SplashActivity extends Activity {
 
 	protected static final String TAG = "SplashActivity";
@@ -203,11 +210,11 @@ public class SplashActivity extends Activity {
 	 * @throws
 	 */
 	protected void showUpdateDialog() {
-		//this = Activity.this
+		// this = Activity.this
 		AlertDialog.Builder builder = new Builder(SplashActivity.this);
 		builder.setTitle("提示升级");
 		// builder.setCancelable(false);//点击返回键、屏幕别的地方无效，只有点击立即升级或取消有效
-		builder.setOnCancelListener(new OnCancelListener() {//监听返回键、屏幕别的地方，当点击后进入主页面
+		builder.setOnCancelListener(new OnCancelListener() {// 监听返回键、屏幕别的地方，当点击后进入主页面
 			public void onCancel(DialogInterface dialog) {
 				// 进入主界面
 				enterHome();

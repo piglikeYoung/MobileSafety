@@ -27,6 +27,7 @@
         </activity>
         <activity android:name="com.itheima.mobilesafe.HomeActivity"/>
         <activity android:name="com.itheima.mobilesafe.SettingActivity"/>
+        <activity android:name="com.itheima.mobilesafe.LostFindActivity"/>
     </application>
 
 </manifest>
