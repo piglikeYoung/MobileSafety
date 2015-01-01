@@ -10,14 +10,14 @@
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-        <item name="android:windowNoTitle">true</item>
     </style>
-    
+
     <style name="text_content_style">
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_marginTop">8dip</item>
@@ -49,5 +49,4 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-
 </resources>
