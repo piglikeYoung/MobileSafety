@@ -58,12 +58,15 @@ public abstract class BaseSetupActivity extends Activity {
 		});
 	}
 
+	/**
+	 * 等待子类重写的方法
+	 */
 	public abstract void showNext();
 
 	public abstract void showPre();
 
 	/**
-	 * 下一步的点击事件
+	 * 下一步的点击按钮
 	 * 
 	 * @param view
 	 */
@@ -73,7 +76,7 @@ public abstract class BaseSetupActivity extends Activity {
 	}
 
 	/**
-	 * 上一步
+	 * 上一步的点击按钮
 	 * 
 	 * @param view
 	 */
