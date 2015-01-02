@@ -6,33 +6,31 @@ import java.security.NoSuchAlgorithmException;
 public class MD5Utils {
 	
 	/**
-	 * md5¼ÓÃÜ·½·¨
+	 * md5åŠ å¯†æ–¹æ³•
 	 * @param password
 	 * @return
 	 */
 	public static String md5Password(String password) {
 
 		try {
-			// µÃµ½Ò»¸öĞÅÏ¢ÕªÒªÆ÷
+			// å¾—åˆ°ä¸€ä¸ªä¿¡æ¯æ‘˜è¦å™¨
 			MessageDigest digest = MessageDigest.getInstance("md5");
 			byte[] result = digest.digest(password.getBytes());
 			StringBuffer buffer = new StringBuffer();
-			// °ÑÃ»Ò»¸öbyte ×öÒ»¸öÓëÔËËã 0xff;
+			// æŠŠæ²¡ä¸€ä¸ªbyte åšä¸€ä¸ªä¸è¿ç®— 0xff;
 			for (byte b : result) {
-				// ÓëÔËËã
-				int number = b & 0xff;// ¼ÓÑÎ
+				// ä¸è¿ç®—
+				int number = b & 0xff;// åŠ ç›
 				String str = Integer.toHexString(number);
-				// System.out.println(str);
 				if (str.length() == 1) {
 					buffer.append("0");
 				}
 				buffer.append(str);
 			}
 
-			// ±ê×¼µÄmd5¼ÓÃÜºóµÄ½á¹û
+			// æ ‡å‡†çš„md5åŠ å¯†åçš„ç»“æœ
 			return buffer.toString();
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "";
 		}
