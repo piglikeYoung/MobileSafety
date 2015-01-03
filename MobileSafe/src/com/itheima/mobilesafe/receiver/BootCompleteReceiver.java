@@ -33,7 +33,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
 			}else{
 				// sim 已经变更 发一个短信给安全号码
 				Toast.makeText(context, "sim 已经变更", 1).show();
-				//SmsManager.getDefault().sendTextMessage(sp.getString("safenumber", ""), null, "sim changing....", null, null);
+				SmsManager.getDefault().sendTextMessage(sp.getString("safenumber", ""), null, "sim changing....", null, null);
 			}
 		}
 	}
