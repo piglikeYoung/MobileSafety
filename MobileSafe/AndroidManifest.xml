@@ -41,6 +41,7 @@
         <activity android:name="com.itheima.mobilesafe.Setup2Activity"/>
         <activity android:name="com.itheima.mobilesafe.Setup3Activity"/>
         <activity android:name="com.itheima.mobilesafe.Setup4Activity"/>
+        <activity android:name="com.itheima.mobilesafe.SelectContactActivity"/>
         
         <receiver android:name="com.itheima.mobilesafe.receiver.BootCompleteReceiver" >
             <intent-filter >
