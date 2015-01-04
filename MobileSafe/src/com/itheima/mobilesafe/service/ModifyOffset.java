@@ -1,18 +1,19 @@
 package com.itheima.mobilesafe.service;
 
-
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 
 /**
  * 火星地球坐标转化.地图坐标修偏
  * 
+ * @ClassName: ModifyOffset
+ * @author JinHeng
+ * @date 2015年1月4日 下午3:12:21
  */
 public class ModifyOffset {
 	private static ModifyOffset modifyOffset;
 	static double[] X = new double[660 * 450];
 	static double[] Y = new double[660 * 450];
-
 
 	private ModifyOffset(InputStream inputStream) throws Exception {
 		init(inputStream);
@@ -56,13 +57,9 @@ public class ModifyOffset {
 			int iy = (int) (10.0d * (y - 10.0d));
 			double dx = (x - 72.0d - 0.1d * ix) * 10.0d;
 			double dy = (y - 10.0d - 0.1d * iy) * 10.0d;
-			x = (x + pt.x + (1.0d - dx) * (1.0d - dy) * X[ix + 660 * iy] + dx
-					* (1.0d - dy) * X[ix + 660 * iy + 1] + dx * dy
-					* X[ix + 660 * iy + 661] + (1.0d - dx) * dy
+			x = (x + pt.x + (1.0d - dx) * (1.0d - dy) * X[ix + 660 * iy] + dx * (1.0d - dy) * X[ix + 660 * iy + 1] + dx * dy * X[ix + 660 * iy + 661] + (1.0d - dx) * dy
 					* X[ix + 660 * iy + 660] - x) / 2.0d;
-			y = (y + pt.y + (1.0d - dx) * (1.0d - dy) * Y[ix + 660 * iy] + dx
-					* (1.0d - dy) * Y[ix + 660 * iy + 1] + dx * dy
-					* Y[ix + 660 * iy + 661] + (1.0d - dx) * dy
+			y = (y + pt.y + (1.0d - dx) * (1.0d - dy) * Y[ix + 660 * iy] + dx * (1.0d - dy) * Y[ix + 660 * iy + 1] + dx * dy * Y[ix + 660 * iy + 661] + (1.0d - dx) * dy
 					* Y[ix + 660 * iy + 660] - y) / 2.0d;
 		}
 		return new PointDouble(x, y);
@@ -79,13 +76,9 @@ public class ModifyOffset {
 			int iy = (int) (10.0d * (y - 10.0d));
 			double dx = (x - 72.0d - 0.1d * ix) * 10.0d;
 			double dy = (y - 10.0d - 0.1d * iy) * 10.0d;
-			x = (x + pt.x - (1.0d - dx) * (1.0d - dy) * X[ix + 660 * iy] - dx
-					* (1.0d - dy) * X[ix + 660 * iy + 1] - dx * dy
-					* X[ix + 660 * iy + 661] - (1.0d - dx) * dy
+			x = (x + pt.x - (1.0d - dx) * (1.0d - dy) * X[ix + 660 * iy] - dx * (1.0d - dy) * X[ix + 660 * iy + 1] - dx * dy * X[ix + 660 * iy + 661] - (1.0d - dx) * dy
 					* X[ix + 660 * iy + 660] + x) / 2.0d;
-			y = (y + pt.y - (1.0d - dx) * (1.0d - dy) * Y[ix + 660 * iy] - dx
-					* (1.0d - dy) * Y[ix + 660 * iy + 1] - dx * dy
-					* Y[ix + 660 * iy + 661] - (1.0d - dx) * dy
+			y = (y + pt.y - (1.0d - dx) * (1.0d - dy) * Y[ix + 660 * iy] - dx * (1.0d - dy) * Y[ix + 660 * iy + 1] - dx * dy * Y[ix + 660 * iy + 661] - (1.0d - dx) * dy
 					* Y[ix + 660 * iy + 660] + y) / 2.0d;
 		}
 		return new PointDouble(x, y);

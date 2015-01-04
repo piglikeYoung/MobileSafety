@@ -17,6 +17,13 @@ import android.widget.Toast;
 import com.itheima.mobilesafe.R;
 import com.itheima.mobilesafe.service.GPSService;
 
+/**
+ * 短信接收者，用于远程监听收到的短信
+ * 
+ * @ClassName: SMSReceiver
+ * @author JinHeng
+ * @date 2015年1月4日 下午2:50:28
+ */
 public class SMSReceiver extends BroadcastReceiver {
 
 	private static final String TAG = "SMSReceiver";

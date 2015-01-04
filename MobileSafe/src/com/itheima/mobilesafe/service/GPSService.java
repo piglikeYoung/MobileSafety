@@ -11,6 +11,13 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 
+/**
+ * GPS服务
+ * 
+ * @ClassName: GPSService
+ * @author JinHeng
+ * @date 2015年1月4日 下午2:53:18
+ */
 public class GPSService extends Service {
 	// 用到位置服务
 	private LocationManager lm;
