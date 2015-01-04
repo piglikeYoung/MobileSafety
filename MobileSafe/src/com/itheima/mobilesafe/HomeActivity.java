@@ -61,6 +61,10 @@ public class HomeActivity extends Activity {
 				case 0:// 进入手机防盗页面
 					showLostFindDialog();
 					break;
+				case 7:// 进入高级工具
+					Intent intent7 = new Intent(HomeActivity.this, AtoolsActivity.class);
+					startActivity(intent7);
+					break;
 				default:
 					break;
 				}
@@ -132,8 +136,8 @@ public class HomeActivity extends Activity {
 				}
 			}
 		});
-		dialog = builder.create();//创建对话框
-		dialog.setView(view, 0, 0, 0, 0);//将布局文件设置进对话框
+		dialog = builder.create();// 创建对话框
+		dialog.setView(view, 0, 0, 0, 0);// 将布局文件设置进对话框
 		dialog.show();
 	}
 
@@ -183,8 +187,8 @@ public class HomeActivity extends Activity {
 
 			}
 		});
-		dialog = builder.create();//创建对话框
-		dialog.setView(view, 0, 0, 0, 0);//将布局文件设置进对话框
+		dialog = builder.create();// 创建对话框
+		dialog.setView(view, 0, 0, 0, 0);// 将布局文件设置进对话框
 		dialog.show();
 	}
 
