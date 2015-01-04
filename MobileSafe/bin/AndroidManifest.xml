@@ -41,10 +41,16 @@
         <activity android:name="com.itheima.mobilesafe.Setup2Activity"/>
         <activity android:name="com.itheima.mobilesafe.Setup3Activity"/>
         <activity android:name="com.itheima.mobilesafe.Setup4Activity"/>
+        <activity android:name="com.itheima.mobilesafe.SelectContactActivity"/>
         
         <receiver android:name="com.itheima.mobilesafe.receiver.BootCompleteReceiver" >
             <intent-filter >
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.itheima.mobilesafe.receiver.SMSReceiver">
+            <intent-filter android:priority="1000" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
         </receiver>
     </application>
