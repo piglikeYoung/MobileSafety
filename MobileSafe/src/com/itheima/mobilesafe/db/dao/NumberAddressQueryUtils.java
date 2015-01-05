@@ -86,7 +86,9 @@ public class NumberAddressQueryUtils {
 				
 				break;
 			}
+			
 		}
+		database.close();
 		return address;
 
 	}
