@@ -81,8 +81,8 @@ public class NumberAddressQueryActivity extends Activity {
 
 			// 当电话号码为空的时候，就去振动手机提醒用户
 			// vibrator.vibrate(2000);
-			long[] pattern = { 200, 200, 300, 300, 1000, 2000 };
-			// -1不重复 0循环振动 1；
+			long[] pattern = { 200, 200, 300, 300, 1000, 2000 };//停200毫秒，震动200毫秒，依此类推
+			// -1不重复；0循环振动，从pattern第0位开始；1循环振动，从pattern第1位开始
 			vibrator.vibrate(pattern, -1);
 
 			return;
