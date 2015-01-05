@@ -42,6 +42,9 @@
         <activity android:name="com.itheima.mobilesafe.Setup3Activity"/>
         <activity android:name="com.itheima.mobilesafe.Setup4Activity"/>
         <activity android:name="com.itheima.mobilesafe.SelectContactActivity"/>
+        <activity android:name="com.itheima.mobilesafe.AtoolsActivity"/>
+        <activity android:name="com.itheima.mobilesafe.NumberAddressQueryActivity"/>
+        <service android:name="com.itheima.mobilesafe.service.GPSService"/>
         
         <receiver android:name="com.itheima.mobilesafe.receiver.BootCompleteReceiver" >
             <intent-filter >
@@ -51,6 +54,19 @@
         <receiver android:name="com.itheima.mobilesafe.receiver.SMSReceiver">
             <intent-filter android:priority="1000" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.itheima.mobilesafe.receiver.MyAdmin"
+            android:description="@string/sample_device_admin_description"
+            android:label="@string/sample_device_admin"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_sample" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
     </application>
