@@ -16,6 +16,13 @@ import android.widget.Toast;
 
 import com.itheima.mobilesafe.db.dao.NumberAddressQueryUtils;
 
+/**
+ * 号码归属地查询界面
+ * 
+ * @ClassName: NumberAddressQueryActivity
+ * @author JinHeng
+ * @date 2015年1月6日 下午4:15:00
+ */
 public class NumberAddressQueryActivity extends Activity {
 
 	private EditText ed_phone;
@@ -81,7 +88,7 @@ public class NumberAddressQueryActivity extends Activity {
 
 			// 当电话号码为空的时候，就去振动手机提醒用户
 			// vibrator.vibrate(2000);
-			long[] pattern = { 200, 200, 300, 300, 1000, 2000 };//停200毫秒，震动200毫秒，依此类推
+			long[] pattern = { 200, 200, 300, 300, 1000, 2000 };// 停200毫秒，震动200毫秒，依此类推
 			// -1不重复；0循环振动，从pattern第0位开始；1循环振动，从pattern第1位开始
 			vibrator.vibrate(pattern, -1);
 

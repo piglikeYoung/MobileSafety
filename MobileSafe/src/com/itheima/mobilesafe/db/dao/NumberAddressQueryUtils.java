@@ -3,6 +3,13 @@ package com.itheima.mobilesafe.db.dao;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * 号码归属地查询工具类
+ * 
+ * @ClassName: NumberAddressQueryUtils
+ * @author JinHeng
+ * @date 2015年1月6日 下午4:14:15
+ */
 public class NumberAddressQueryUtils {
 
 	private static String path = "data/data/com.itheima.mobilesafe/files/address.db";
@@ -61,7 +68,7 @@ public class NumberAddressQueryUtils {
 
 			default:
 				// 处理长途电话
-				if (number.length()>10&&number.startsWith("0")) {
+				if (number.length() > 10 && number.startsWith("0")) {
 					// 010-59790386
 					Cursor cursor = database.rawQuery(//
 							"select location from data2 where area = ?",//
@@ -70,23 +77,21 @@ public class NumberAddressQueryUtils {
 						String location = cursor.getString(0);
 						address = location.substring(0, location.length() - 2);
 					}
-					
+
 					cursor.close();
-					
+
 					// 0855-59790386
-					cursor = database.rawQuery(
-							"select location from data2 where area = ?",
-							new String[] { number.substring(1, 4) });
+					cursor = database.rawQuery("select location from data2 where area = ?", new String[] { number.substring(1, 4) });
 					while (cursor.moveToNext()) {
 						String location = cursor.getString(0);
 						address = location.substring(0, location.length() - 2);
 
 					}
 				}
-				
+
 				break;
 			}
-			
+
 		}
 		database.close();
 		return address;

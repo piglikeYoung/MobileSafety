@@ -23,5 +23,20 @@
         itheima:desc_on="设置自动更新已经开启"
         itheima:mtitle="设置自动更新" >
     </com.itheima.mobilesafe.ui.SettingItemView>
+    
+    <com.itheima.mobilesafe.ui.SettingItemView
+        android:id="@+id/siv_show_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        itheima:desc_off="设置显示号码归属地已经关闭"
+        itheima:desc_on="设置显示号码归属地已经开启"
+        itheima:mtitle="设置显示号码归属地" >
+    </com.itheima.mobilesafe.ui.SettingItemView>
+    
+    <com.itheima.mobilesafe.ui.SettingClickView
+        android:id="@+id/scv_changebg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    </com.itheima.mobilesafe.ui.SettingClickView>
 
 </LinearLayout>

@@ -46,7 +46,9 @@
         <activity android:name="com.itheima.mobilesafe.SelectContactActivity"/>
         <activity android:name="com.itheima.mobilesafe.AtoolsActivity"/>
         <activity android:name="com.itheima.mobilesafe.NumberAddressQueryActivity"/>
+        
         <service android:name="com.itheima.mobilesafe.service.GPSService"/>
+        <service android:name="com.itheima.mobilesafe.service.AddressService"/>
         
         <receiver android:name="com.itheima.mobilesafe.receiver.BootCompleteReceiver" >
             <intent-filter >
