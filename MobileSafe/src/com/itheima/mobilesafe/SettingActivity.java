@@ -39,14 +39,20 @@ public class SettingActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		showAddress = new Intent(this, AddressService.class);
+		
+		Editor editor = sp.edit();
+		
 		boolean isServiceRunning = ServiceUtils.isServiceRunning(SettingActivity.this, "com.itheima.mobilesafe.service.AddressService");
 
 		if (isServiceRunning) {
 			// 监听来电的服务是开启的
 			siv_show_address.setChecked(true);
+			editor.putBoolean("showAddressSwitch", true);
 		} else {
 			siv_show_address.setChecked(false);
+			editor.putBoolean("showAddressSwitch", false);
 		}
+		editor.commit();
 	}
 
 	@Override
@@ -91,6 +97,14 @@ public class SettingActivity extends Activity {
 		// 设置号码归属地显示空间
 		siv_show_address = (SettingItemView) findViewById(R.id.siv_show_address);
 		showAddress = new Intent(this, AddressService.class);
+		
+		boolean showAddressSwitch = sp.getBoolean("showAddressSwitch", false);
+		if (showAddressSwitch) {
+			startService(showAddress);
+		}else {
+			stopService(showAddress);
+		}
+		
 		boolean isServiceRunning = ServiceUtils.isServiceRunning(SettingActivity.this, "com.itheima.mobilesafe.service.AddressService");
 
 		if (isServiceRunning) {
@@ -103,17 +117,20 @@ public class SettingActivity extends Activity {
 		siv_show_address.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
+				Editor editor = sp.edit();
+				
 				if (siv_show_address.isChecked()) {
 					// 变为非选中状态
 					siv_show_address.setChecked(false);
 					stopService(showAddress);
-
+					editor.putBoolean("showAddressSwitch", false);
 				} else {
 					// 选择状态
 					siv_show_address.setChecked(true);
 					startService(showAddress);
-
+					editor.putBoolean("showAddressSwitch", true);
 				}
+				editor.commit();
 			}
 		});
 
