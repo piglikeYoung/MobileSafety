@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.itheima.mobilesafe.service.AddressService;
+import com.itheima.mobilesafe.service.CallSmsSafeService;
 import com.itheima.mobilesafe.ui.SettingClickView;
 import com.itheima.mobilesafe.ui.SettingItemView;
 import com.itheima.mobilesafe.utils.ServiceUtils;
@@ -33,15 +34,19 @@ public class SettingActivity extends Activity {
 	private SettingItemView siv_show_address;
 	private Intent showAddress;
 
+	// 黑名单拦截设置
+	private SettingItemView siv_callsms_safe;
+	private Intent callSmsSafeIntent;
+
 	// 设置归属地显示框背景
 	private SettingClickView scv_changebg;
 
 	protected void onResume() {
 		super.onResume();
 		showAddress = new Intent(this, AddressService.class);
-		
+
 		Editor editor = sp.edit();
-		
+
 		boolean isServiceRunning = ServiceUtils.isServiceRunning(SettingActivity.this, "com.itheima.mobilesafe.service.AddressService");
 
 		if (isServiceRunning) {
@@ -52,6 +57,11 @@ public class SettingActivity extends Activity {
 			siv_show_address.setChecked(false);
 			editor.putBoolean("showAddressSwitch", false);
 		}
+
+		// 黑名单拦截
+		boolean iscallSmsServiceRunning = ServiceUtils.isServiceRunning(SettingActivity.this, "com.itheima.mobilesafe.service.CallSmsSafeService");
+		siv_callsms_safe.setChecked(iscallSmsServiceRunning);
+
 		editor.commit();
 	}
 
@@ -97,14 +107,14 @@ public class SettingActivity extends Activity {
 		// 设置号码归属地显示空间
 		siv_show_address = (SettingItemView) findViewById(R.id.siv_show_address);
 		showAddress = new Intent(this, AddressService.class);
-		
+
 		boolean showAddressSwitch = sp.getBoolean("showAddressSwitch", false);
 		if (showAddressSwitch) {
 			startService(showAddress);
-		}else {
+		} else {
 			stopService(showAddress);
 		}
-		
+
 		boolean isServiceRunning = ServiceUtils.isServiceRunning(SettingActivity.this, "com.itheima.mobilesafe.service.AddressService");
 
 		if (isServiceRunning) {
@@ -118,7 +128,7 @@ public class SettingActivity extends Activity {
 
 			public void onClick(View v) {
 				Editor editor = sp.edit();
-				
+
 				if (siv_show_address.isChecked()) {
 					// 变为非选中状态
 					siv_show_address.setChecked(false);
@@ -131,6 +141,25 @@ public class SettingActivity extends Activity {
 					editor.putBoolean("showAddressSwitch", true);
 				}
 				editor.commit();
+			}
+		});
+
+		// 黑名单拦截设置
+		siv_callsms_safe = (SettingItemView) findViewById(R.id.siv_callsms_safe);
+		callSmsSafeIntent = new Intent(this, CallSmsSafeService.class);
+		siv_callsms_safe.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				if (siv_callsms_safe.isChecked()) {
+					// 变为非选中状态
+					siv_callsms_safe.setChecked(false);
+					stopService(callSmsSafeIntent);
+				} else {
+					// 选择状态
+					siv_callsms_safe.setChecked(true);
+					startService(callSmsSafeIntent);
+				}
+
 			}
 		});
 

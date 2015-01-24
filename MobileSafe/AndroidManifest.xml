@@ -8,25 +8,29 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="21" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 权限 -->
+	<uses-permission android:name="android.permission.INTERNET"/><!-- 访问网络权限 -->
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- 读SD卡权限 -->
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/><!-- 写SD卡权限 -->
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/><!-- 读取手机状态权限 -->
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/><!-- 开机启动权限 -->
+   	<uses-permission android:name="android.permission.READ_CONTACTS"/><!-- 读联系人权限 -->
+   	<uses-permission android:name="android.permission.SEND_SMS"/> <!-- 发送短信权限 -->
+   	<uses-permission android:name="android.permission.RECEIVE_SMS"/> <!-- 读取短信的权限 -->
+   	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/><!-- 具体位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/><!-- 大概位置 -->
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/> <!-- 模拟器位置 -->
+    <uses-permission android:name="android.permission.VIBRATE"/> <!-- 允许访问振动设备权限 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/><!-- 外拨电话权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 触摸toast窗体权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/> <!-- 电话权限 -->
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/> <!-- 写通话记录 -->
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/> <!-- 读通话记录 -->
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
         android:targetPackage="com.itheima.mobilesafe" />
 
-    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"

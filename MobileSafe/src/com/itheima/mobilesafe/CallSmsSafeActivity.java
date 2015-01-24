@@ -24,6 +24,13 @@ import android.widget.Toast;
 import com.itheima.mobilesafe.db.dao.BlackNumberDao;
 import com.itheima.mobilesafe.domain.BlackNumberInfo;
 
+/**
+ * 通讯卫士主界面,拦截黑名单短信和电话
+ * 
+ * @ClassName: CallSmsSafeActivity
+ * @author JinHeng
+ * @date 2015年1月22日 上午11:49:25
+ */
 public class CallSmsSafeActivity extends Activity {
 
 	public static final String TAG = "CallSmsSafeActivity";
@@ -58,7 +65,7 @@ public class CallSmsSafeActivity extends Activity {
 				Log.i(TAG, "创建新的view对象：" + position);
 				// 把一个布局文件转化成 view对象。
 				view = View.inflate(getApplicationContext(), R.layout.list_item_callsms, null);
-				// 2.减少子孩子查询的次数 内存中对象的地址。
+				// 2.减少查询的次数 内存中对象的地址,记录下地址,不用每次去内存中查询
 				holder = new ViewHolder();
 				holder.tv_number = (TextView) view.findViewById(R.id.tv_black_number);
 				holder.tv_mode = (TextView) view.findViewById(R.id.tv_block_mode);
@@ -115,7 +122,7 @@ public class CallSmsSafeActivity extends Activity {
 	}
 
 	/**
-	 * view对象的容器 记录孩子的内存地址。 相当于一个记事本
+	 * view对象的容器 记录控件的内存地址。 相当于一个记事本
 	 */
 	static class ViewHolder {
 		TextView tv_number;
