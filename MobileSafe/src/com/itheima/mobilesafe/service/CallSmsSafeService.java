@@ -4,9 +4,13 @@ import java.lang.reflect.Method;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.net.Uri;
+import android.os.Handler;
 import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.SmsMessage;
@@ -98,7 +102,14 @@ public class CallSmsSafeService extends Service {
 				String result = dao.findMode(incomingNumber);
 				if ("1".equals(result) || "3".equals(result)) {
 					Log.i(TAG, "挂断电话。。。。");
-					endCall();
+
+					// 删除呼叫记录
+					// 另外一个应用程序联系人的应用的私有数据库,所以需要内容提供者
+					// 观察呼叫记录数据库内容的变化
+					Uri uri = Uri.parse("content://call_log/calls");
+					getContentResolver().registerContentObserver(uri, true, new CallLogObserver(incomingNumber, new Handler()));
+					endCall();// 挂断电话 另外一个进程里面运行的
+								// 远程服务的方法。方法调用后,呼叫记录可能还没有生成,所以监听数据库是否变化
 				}
 				break;
 
@@ -108,6 +119,48 @@ public class CallSmsSafeService extends Service {
 			super.onCallStateChanged(state, incomingNumber);
 		}
 
+	}
+
+	/**
+	 * 监听通话记录
+	 * 
+	 * @ClassName: CallLogObserver
+	 * @author JinHeng
+	 * @date 2015年1月24日 下午2:10:22
+	 */
+	private class CallLogObserver extends ContentObserver {
+
+		private String incomingNumber;
+
+		public CallLogObserver(String incomingNumber, Handler handler) {
+			super(handler);
+			this.incomingNumber = incomingNumber;
+		}
+
+		@Override
+		public void onChange(boolean selfChange) {
+			System.out.println("数据库产生了呼叫记录");
+			getContentResolver().unregisterContentObserver(this);// 取消注册
+			deleteCallLog(incomingNumber);
+			super.onChange(selfChange);
+		}
+
+	}
+
+	/**
+	 * 利用内容提供者删除呼叫记录
+	 * 
+	 * @Title: deleteCallLog
+	 * @author JinHeng
+	 * @date 2015年1月24日 下午2:10:15
+	 * @throws
+	 */
+	public void deleteCallLog(String incomingNumber) {
+		ContentResolver resolver = getContentResolver();
+		// 呼叫记录uri的路径
+		Uri uri = Uri.parse("content://call_log/calls");
+		// CallLog.CONTENT_URI;
+		resolver.delete(uri, "number=?", new String[] { incomingNumber });
 	}
 
 	/**
